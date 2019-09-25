@@ -1,0 +1,73 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="./bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="./bower_components/iron-icons/maps-icons.html">
+<link rel="import" href="../polymer/app-user.html">
+<dom-module id="app-prueba">
+  <template>
+    <style>
+      :host {
+        display: block;
+        background-color:blanchedalmond;
+        margin: 1rem;
+        padding: 1rem;
+        border: 1px solid maroon;
+      }
+      iron-icon {
+        cursor: pointer;
+        --iron-icon-fill-color:brown;
+      }
+      :host([pressed]) iron-icon {
+        fill: goldenrod;
+      }
+    </style>
+    <h2>Saludos desde [[title]]!</h2>
+    <p> <iron-icon icon="[[icono]]" on-click="onClick"></iron-icon> </p>
+    <p>Hecho en polymer</p>
+    <address>&copy; [[autor]] -[[fecha]] </address>
+  </template>
+
+  <script>
+    /**
+     * `app-prueba`
+     * 
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class AppPrueba extends Polymer.Element {
+      static get is() { return 'app-prueba'; }
+      static get properties() {
+        return {
+          autor: {
+          type: String,
+          value: 'Hitomi Aoki'
+          },
+          title: {
+            type: String,
+            value: 'app-prueba'
+          },
+          
+          pressed: {
+           type: Boolean,
+           value: false,
+           notify: true,
+           reflectToAttribute: true
+      }
+
+          /*fecha: {
+            type: String,
+            value: ''
+          }*/
+        };
+      }
+      constructor() {
+        super()
+        this.fecha = new Date().toLocaleDateString()
+        this.pressed = !this.pressed
+      }
+    }// Fin de la clase
+
+    customElements.define(AppPrueba.is, AppPrueba);
+  </script>
+</dom-module>

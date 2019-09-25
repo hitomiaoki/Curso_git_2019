@@ -1,0 +1,67 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<dom-module id="app-user">
+  <template>
+    <style>
+      :host {
+        display: block;
+        background-color:blanchedalmond;
+        margin: 1rem;
+        padding: 1rem;
+        border: 1px solid maroon;
+      }
+      input {
+          margin:1rem;
+          border: none;
+          border-bottom: 1px solid gainsboro;
+          width: 100%;
+          background-color: inherit;
+      }
+     
+    </style>
+    <h2>Usuario</h2>
+    <div>
+     <input type="text" id="nombre" placeholder="Nombre" value="{{userData::input}}">    
+    </div>
+    <div>
+    <input type="text"  id="apellido"  placeholder="apellido"  value="{{userData::input}}">
+    </div>
+    <p>
+     Hola [[userData.nombre]]
+    </p>
+  </template>
+
+  <script>
+    /**
+     * `app-prueba`
+     * 
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class AppUser extends Polymer.Element {
+      static get is() { return 'app-user'; }
+      static get properties() { 
+          return{
+           titulo: {
+            type: String,
+            value: 'Usuario'
+           },
+           userData: {
+               type: Object,
+               value: function() {
+                  return {
+                    nombre: '',
+                    apellido:''  
+                 }},    
+               notify: true
+            }
+            };
+      }
+      constructor() {
+        super()
+      }
+    }
+    customElements.define(AppUser.is, AppUser);
+  </script>
+</dom-module>
